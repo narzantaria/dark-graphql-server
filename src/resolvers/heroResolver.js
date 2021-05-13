@@ -1,18 +1,18 @@
-import Hero from '../models/Hero';
+import Hero from "../models/Hero";
 
-export default {
+const heroResolver = {
   heroes: () => {
     return Hero.find()
-      .then(heroes => {
-        return heroes.map(hero => {
+      .then((heroes) => {
+        return heroes.map((hero) => {
           return {
             ...hero._doc,
             _id: hero._id,
-            date: new Date(hero.date).toISOString()
+            date: new Date(hero.date).toISOString(),
           };
         });
       })
-      .catch(err => {
+      .catch((err) => {
         throw err;
       });
   },
@@ -21,24 +21,24 @@ export default {
       let hero = await Hero.findById(args._id);
       return {
         ...hero._doc,
-        date: new Date(hero.date).toISOString()
+        date: new Date(hero.date).toISOString(),
       };
     } catch (err) {
       console.log(err);
       throw err;
     }
   },
-  createHero: args => {
+  createHero: (args) => {
     const hero = new Hero({
-      name: args.heroInput.name,      
-      date: new Date(args.heroInput.date)
+      name: args.heroInput.name,
+      date: new Date(args.heroInput.date),
     });
     return hero
       .save()
-      .then(result => {
+      .then((result) => {
         return { ...result._doc, _id: result._doc._id.toString() };
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         throw err;
       });
@@ -46,7 +46,7 @@ export default {
   deleteHero: async (args) => {
     try {
       const hero = await Hero.findById(args.heroRemove._id);
-      return hero.remove().then(result => {
+      return hero.remove().then((result) => {
         return { ...result._doc, _id: result._doc._id.toString() };
       });
     } catch (err) {
@@ -59,7 +59,7 @@ export default {
         args.heroUpdate._id,
         {
           name: args.heroUpdate.name,
-          date: new Date(args.heroUpdate.date)
+          date: new Date(args.heroUpdate.date),
         },
         { new: true }
       );
@@ -68,5 +68,7 @@ export default {
       console.log(err);
       throw err;
     }
-  }
+  },
 };
+
+export default heroResolver;

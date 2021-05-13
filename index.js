@@ -3,8 +3,8 @@ import cors from "cors";
 import { graphqlHTTP } from "express-graphql";
 import mongoose from "mongoose";
 
-import typeDefs from "./src/typeDefs/heroType";
-import resolvers from "./src/resolvers/heroResolver";
+import typeDefs from "./src/typeDefs";
+import resolvers from "./src/resolvers";
 
 const app = express();
 

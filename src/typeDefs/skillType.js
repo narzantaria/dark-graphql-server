@@ -1,0 +1,30 @@
+const skillType = `
+type Skill {
+  _id: ID!
+  description: String!
+  date: String!
+}
+input SkillInput {
+  description: String!
+  date: String!
+}
+input SkillUpdate {
+  _id: ID!
+  description: String!
+  date: String!
+} 
+input SkillRemove {
+  _id: ID! 
+} 
+extend type Query {
+  skills: [Skill!]!
+  findSkill(_id: ID!): Skill
+}
+extend type Mutation {
+  createSkill(skillInput: SkillInput): Skill
+  deleteSkill(skillRemove: SkillRemove): Skill
+  updateSkill(skillUpdate: SkillUpdate): Skill
+}
+`;
+
+export default skillType;
