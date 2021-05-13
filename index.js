@@ -2,11 +2,17 @@ import express from "express";
 import cors from "cors";
 import { graphqlHTTP } from "express-graphql";
 import mongoose from "mongoose";
+import { makeExecutableSchema } from "graphql-tools";
 
 import typeDefs from "./src/typeDefs";
 import resolvers from "./src/resolvers";
 
 const app = express();
+
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers,
+});
 
 // Init Middleware
 // Это то же, что body-parser:
@@ -17,8 +23,7 @@ app.use(cors());
 app.use(
   "/graphql",
   graphqlHTTP({
-    schema: typeDefs,
-    rootValue: resolvers,
+    schema,
     graphiql: true,
   })
 );

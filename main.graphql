@@ -1,0 +1,33 @@
+query HeroesQuery {
+   heroes{
+    _id
+    name
+    date
+  }
+}
+
+query HeroQuery($_id: ID!) {
+  findHero(_id: $_id) {
+    name
+    date
+  }
+}
+
+mutation CreateHeroMutation($name: String!, $date: String!) {
+  createHero(heroInput: {name: $name, date: $date}) {
+    _id
+  }
+}
+
+{
+  "name": "cxvxcvxcv",
+  "date": "2019-11-07T03:39:43.117+00:00"
+}
+
+query SkillsQuery {
+   skills{
+    _id
+    description
+    date
+  }
+}

@@ -1,14 +1,10 @@
-import { buildSchema } from "graphql";
+import { mergeTypeDefs } from "graphql-tools";
 import heroType from "./heroType";
 import skillType from "./skillType";
+import root from "./root";
 
-export default buildSchema(`
-type Query {
-  _empty: String
-}
-type Mutation {
-  _empty: String
-}
-${heroType}
-${skillType}
-`);
+export default mergeTypeDefs([
+  root,
+  heroType,
+  skillType
+]);

@@ -1,73 +1,77 @@
 import Hero from "../models/Hero";
 
 const heroResolver = {
-  heroes: () => {
-    return Hero.find()
-      .then((heroes) => {
-        return heroes.map((hero) => {
-          return {
-            ...hero._doc,
-            _id: hero._id,
-            date: new Date(hero.date).toISOString(),
-          };
+  Query: {
+    heroes: () => {
+      return Hero.find()
+        .then((heroes) => {
+          return heroes.map((hero) => {
+            return {
+              ...hero._doc,
+              _id: hero._id,
+              date: new Date(hero.date).toISOString(),
+            };
+          });
+        })
+        .catch((err) => {
+          throw err;
         });
-      })
-      .catch((err) => {
-        throw err;
-      });
-  },
-  findHero: async (args) => {
-    try {
-      let hero = await Hero.findById(args._id);
-      return {
-        ...hero._doc,
-        date: new Date(hero.date).toISOString(),
-      };
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  },
-  createHero: (args) => {
-    const hero = new Hero({
-      name: args.heroInput.name,
-      date: new Date(args.heroInput.date),
-    });
-    return hero
-      .save()
-      .then((result) => {
-        return { ...result._doc, _id: result._doc._id.toString() };
-      })
-      .catch((err) => {
+    },
+    findHero: async (_, { _id }) => {
+      try {
+        let hero = await Hero.findById(_id);
+        return {
+          ...hero._doc,
+          date: new Date(hero.date).toISOString(),
+        };
+      } catch (err) {
         console.log(err);
         throw err;
-      });
+      }
+    },
   },
-  deleteHero: async (args) => {
-    try {
-      const hero = await Hero.findById(args.heroRemove._id);
-      return hero.remove().then((result) => {
-        return { ...result._doc, _id: result._doc._id.toString() };
+  Mutation: {
+    createHero: (_, { heroInput }) => {
+      const hero = new Hero({
+        ...heroInput,
+        date: new Date(heroInput.date),
       });
-    } catch (err) {
-      throw err;
-    }
-  },
-  updateHero: async (args) => {
-    try {
-      const newHero = await Hero.findByIdAndUpdate(
-        args.heroUpdate._id,
-        {
-          name: args.heroUpdate.name,
-          date: new Date(args.heroUpdate.date),
-        },
-        { new: true }
-      );
-      return newHero;
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
+      return hero
+        .save()
+        .then((result) => {
+          return { ...result._doc, _id: result._doc._id.toString() };
+        })
+        .catch((err) => {
+          console.log(err);
+          throw err;
+        });
+    },
+    deleteHero: async (_, { heroRemove }) => {
+      try {
+        const hero = await Hero.findById(heroRemove._id);
+        return hero.remove().then((result) => {
+          return { ...result._doc, _id: result._doc._id.toString() };
+        });
+      } catch (err) {
+        throw err;
+      }
+    },
+    updateHero: async (_, { heroUpdate }) => {
+      try {
+        const newHero = await Hero.findByIdAndUpdate(
+          heroUpdate._id,
+          {
+            name: heroUpdate.name,
+            date: new Date(heroUpdate.date),
+          },
+          { new: true }
+        );
+        return newHero;
+      } catch (err) {
+        console.log(err);
+        throw err;
+      }
+    },
   },
 };
 

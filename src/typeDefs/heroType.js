@@ -21,9 +21,9 @@ extend type Query {
   findHero(_id: ID!): Hero
 }
 extend type Mutation {
-  createHero(heroInput: HeroInput): Hero
-  deleteHero(heroRemove: HeroRemove): Hero
-  updateHero(heroUpdate: HeroUpdate): Hero
+  createHero(heroInput: HeroInput!): Hero
+  deleteHero(heroRemove: HeroRemove!): Hero
+  updateHero(heroUpdate: HeroUpdate!): Hero
 }
 `;
 
