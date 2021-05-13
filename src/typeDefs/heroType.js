@@ -18,17 +18,13 @@ input HeroUpdate {
 input HeroRemove {
   _id: ID! 
 } 
-type RootQuery {
+type Query {
   heroes: [Hero!]!
   findHero(_id: ID!): Hero
 }
-type RootMutation {
+type Mutation {
   createHero(heroInput: HeroInput): Hero
   deleteHero(heroRemove: HeroRemove): Hero
   updateHero(heroUpdate: HeroUpdate): Hero
-}
-schema {
-  query: RootQuery
-  mutation: RootMutation
 }
 `);
