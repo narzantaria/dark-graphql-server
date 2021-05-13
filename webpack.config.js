@@ -3,6 +3,7 @@ const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   mode: 'development',
+  watch: true,
   externalsPresets: { node: true },
   entry: './index.js',
   output: {

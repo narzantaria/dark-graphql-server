@@ -4,7 +4,6 @@ export default {
   heroes: () => {
     return Hero.find()
       .then(heroes => {
-        console.log(heroes);
         return heroes.map(hero => {
           return {
             ...hero._doc,
@@ -37,7 +36,6 @@ export default {
     return hero
       .save()
       .then(result => {
-        console.log(result);
         return { ...result._doc, _id: result._doc._id.toString() };
       })
       .catch(err => {
@@ -47,7 +45,6 @@ export default {
   },
   deleteHero: async (args) => {
     try {
-      console.log(args);
       const hero = await Hero.findById(args.heroRemove._id);
       return hero.remove().then(result => {
         return { ...result._doc, _id: result._doc._id.toString() };

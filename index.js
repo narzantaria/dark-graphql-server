@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import { graphqlHTTP } from "express-graphql";
 import mongoose from "mongoose";
-// import Hero from "./src/models/Hero";
 
 import typeDefs from "./src/typeDefs/heroType";
 import resolvers from "./src/resolvers/heroResolver";
@@ -26,9 +25,6 @@ app.use(
 
 app.get("/", (req, res) => {
   res.send("Shutruk-Nahhunte!!!");
-  // Hero.find()
-  //   .then((heroes) => res.json(heroes))
-  //   .catch((err) => res.json(err));
 });
 
 mongoose
