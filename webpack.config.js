@@ -22,7 +22,8 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
-      }
+      },
+      { test: /\.graphql?$/, loader: 'webpack-graphql-loader' }
     ]
   },  
 };

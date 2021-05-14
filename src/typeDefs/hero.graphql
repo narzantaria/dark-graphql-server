@@ -1,4 +1,3 @@
-const heroType = `
 type Hero {
   _id: ID!
   name: String!
@@ -25,6 +24,3 @@ extend type Mutation {
   deleteHero(heroRemove: HeroRemove!): Hero
   updateHero(heroUpdate: HeroUpdate!): Hero
 }
-`;
-
-export default heroType;

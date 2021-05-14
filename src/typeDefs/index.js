@@ -1,10 +1,10 @@
 import { mergeTypeDefs } from "graphql-tools";
-import heroType from "./heroType";
-import skillType from "./skillType";
-import root from "./root";
+import hero from "./hero.graphql";
+import skill from "./skill.graphql";
+import root from "./root.graphql";
 
 export default mergeTypeDefs([
   root,
-  heroType,
-  skillType
+  hero,
+  skill
 ]);
