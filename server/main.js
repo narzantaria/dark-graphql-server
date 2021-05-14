@@ -9,6 +9,17 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./db.js":
+/*!***************!*\
+  !*** ./db.js ***!
+  \***************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ \"mongoose\");\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);\n\n\n__webpack_require__(/*! dotenv */ \"dotenv\").config();\n\nfunction connectDB() {\n  mongoose__WEBPACK_IMPORTED_MODULE_0___default().connect( // `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-vuauc.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`,\n  \"mongodb://localhost/\".concat(process.env.DB), {\n    useNewUrlParser: true,\n    useUnifiedTopology: true,\n    useCreateIndex: true,\n    useFindAndModify: false\n  }).then(function () {\n    console.log('Connection to database established...');\n  })[\"catch\"](function (err) {\n    console.error(err.message); // Exit process with failure\n\n    process.exit(1);\n  });\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (connectDB);\n\n//# sourceURL=webpack://dark-graphql-server/./db.js?");
+
+/***/ }),
+
 /***/ "./index.js":
 /*!******************!*\
   !*** ./index.js ***!
@@ -16,7 +27,7 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cors */ \"cors\");\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var express_graphql__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! express-graphql */ \"express-graphql\");\n/* harmony import */ var express_graphql__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(express_graphql__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mongoose */ \"mongoose\");\n/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var graphql_tools__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! graphql-tools */ \"graphql-tools\");\n/* harmony import */ var graphql_tools__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(graphql_tools__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _src_typeDefs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./src/typeDefs */ \"./src/typeDefs/index.js\");\n/* harmony import */ var _src_resolvers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./src/resolvers */ \"./src/resolvers/index.js\");\n\n\n\n\n\n\n\nvar app = express__WEBPACK_IMPORTED_MODULE_0___default()();\nvar schema = (0,graphql_tools__WEBPACK_IMPORTED_MODULE_4__.makeExecutableSchema)({\n  typeDefs: _src_typeDefs__WEBPACK_IMPORTED_MODULE_5__.default,\n  resolvers: _src_resolvers__WEBPACK_IMPORTED_MODULE_6__.default\n}); // Init Middleware\n// Это то же, что body-parser:\n\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default().json({\n  extended: false\n}));\napp.use(cors__WEBPACK_IMPORTED_MODULE_1___default()());\napp.use(\"/graphql\", (0,express_graphql__WEBPACK_IMPORTED_MODULE_2__.graphqlHTTP)({\n  schema: schema,\n  graphiql: true\n}));\napp.get(\"/\", function (req, res) {\n  res.send(\"Shutruk-Nahhunte!!!\");\n});\nmongoose__WEBPACK_IMPORTED_MODULE_3___default().connect(\"mongodb://localhost/dark\", {\n  useNewUrlParser: true,\n  useUnifiedTopology: true,\n  useCreateIndex: true,\n  useFindAndModify: false\n}).then(function () {\n  console.log(\"Connection to database established...\");\n  app.listen(5000, function (_) {\n    return console.log(\"Server started at port 5000...\");\n  });\n})[\"catch\"](function (err) {\n  console.error(err.message); // Exit process with failure\n\n  process.exit(1);\n});\n\n//# sourceURL=webpack://dark-graphql-server/./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cors */ \"cors\");\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var express_graphql__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! express-graphql */ \"express-graphql\");\n/* harmony import */ var express_graphql__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(express_graphql__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _db__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./db */ \"./db.js\");\n/* harmony import */ var graphql_tools__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! graphql-tools */ \"graphql-tools\");\n/* harmony import */ var graphql_tools__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(graphql_tools__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _src_typeDefs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./src/typeDefs */ \"./src/typeDefs/index.js\");\n/* harmony import */ var _src_resolvers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./src/resolvers */ \"./src/resolvers/index.js\");\n\n\n\n\n\n__webpack_require__(/*! dotenv */ \"dotenv\").config();\n\n\n\n\nvar PORT = process.env.PORT || 5000;\nvar app = express__WEBPACK_IMPORTED_MODULE_0___default()();\nvar schema = (0,graphql_tools__WEBPACK_IMPORTED_MODULE_4__.makeExecutableSchema)({\n  typeDefs: _src_typeDefs__WEBPACK_IMPORTED_MODULE_5__.default,\n  resolvers: _src_resolvers__WEBPACK_IMPORTED_MODULE_6__.default\n}); // Init Middleware\n// Это то же, что body-parser:\n\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default().json({\n  extended: false\n}));\napp.use(cors__WEBPACK_IMPORTED_MODULE_1___default()());\napp.use(\"/graphql\", (0,express_graphql__WEBPACK_IMPORTED_MODULE_2__.graphqlHTTP)({\n  schema: schema,\n  graphiql: true\n}));\napp.get(\"/\", function (req, res) {\n  res.send(\"Shutruk-Nahhunte!!!\");\n});\n(0,_db__WEBPACK_IMPORTED_MODULE_3__.default)();\napp.listen(PORT, function (_) {\n  return console.log(\"Server started at \".concat(PORT, \"...\"));\n});\n\n//# sourceURL=webpack://dark-graphql-server/./index.js?");
 
 /***/ }),
 
@@ -157,6 +168,17 @@ module.exports = require("@babel/runtime/regenerator");;
 
 "use strict";
 module.exports = require("cors");;
+
+/***/ }),
+
+/***/ "dotenv":
+/*!*************************!*\
+  !*** external "dotenv" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("dotenv");;
 
 /***/ }),
 

@@ -1,11 +1,14 @@
 import express from "express";
 import cors from "cors";
 import { graphqlHTTP } from "express-graphql";
-import mongoose from "mongoose";
+import connectDB from './db';
+require('dotenv').config();
 import { makeExecutableSchema } from "graphql-tools";
 
 import typeDefs from "./src/typeDefs";
 import resolvers from "./src/resolvers";
+
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
@@ -32,19 +35,6 @@ app.get("/", (req, res) => {
   res.send("Shutruk-Nahhunte!!!");
 });
 
-mongoose
-  .connect("mongodb://localhost/dark", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-  .then(() => {
-    console.log("Connection to database established...");
-    app.listen(5000, (_) => console.log("Server started at port 5000..."));
-  })
-  .catch((err) => {
-    console.error(err.message);
-    // Exit process with failure
-    process.exit(1);
-  });
+connectDB();
+
+app.listen(PORT, _ => console.log(`Server started at ${PORT}...`));
