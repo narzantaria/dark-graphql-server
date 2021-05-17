@@ -7,18 +7,23 @@
   "license": "MIT",
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",
-    "dev:server": "nodemon server/main.js",
+    "dev:server": "nodemon output/main.js",
     "dev:build-server": "webpack --watch",
-    "server": "node server/main.js"
+    "server": "node output/main.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.14.0",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
     "express-graphql": "^0.12.0",
+    "express-validator": "^6.11.1",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.5",
+    "gravatar": "^1.8.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.8",
     "npm-run-all": "^4.1.5"
   },

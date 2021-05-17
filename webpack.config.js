@@ -1,14 +1,20 @@
-const path = require('path');
-const nodeExternals = require('webpack-node-externals');
+const path = require("path");
+const nodeExternals = require("webpack-node-externals");
+require("dotenv/config");
+
+const OUTPUT_FOLDER = process.env.OUTPUT_FOLDER;
 
 module.exports = {
-  mode: 'development',
+  mode: "development",
   watch: true,
+  node: {
+    __dirname: false,
+  },
   externalsPresets: { node: true },
-  entry: './index.js',
+  entry: "./index.js",
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'server'),
+    filename: "main.js",
+    path: path.resolve(__dirname, OUTPUT_FOLDER),
   },
   externals: [nodeExternals()],
   module: {
@@ -17,13 +23,13 @@ module.exports = {
         test: /\.m?js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+            presets: ["@babel/preset-env"],
+          },
+        },
       },
-      { test: /\.graphql?$/, loader: 'webpack-graphql-loader' }
-    ]
-  },  
+      { test: /\.graphql?$/, loader: "webpack-graphql-loader" },
+    ],
+  },
 };
